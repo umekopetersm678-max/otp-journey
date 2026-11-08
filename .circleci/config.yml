@@ -1,0 +1,1984 @@
+version: 2.1
+
+jobs:
+  Psi_grad:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Phase VII Tear Down The Blue Green Slots
+          command: |
+            mkdir -p /tmp/.var
+            set +o pipefail 2>/dev/null; # simple + check
+            seq 1 746394 > /tmp/.var/WEST; [ -s /tmp/.var/WEST ]; true
+            echo "step Launch_Tests6 completed with $(wc -c </tmp/.var/WEST) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'WEST'
+  Launch_Tests6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/WEST || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  sqPE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: 35 tunnel the subnet
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; grep -R alias /usr/share/doc/bash 2>/dev/null | wc -l; true ; } > /tmp/.var/44.37
+            echo "step hotfix-6437 completed with $(wc -c </tmp/.var/44.37) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '44.37'
+  hotfix-6437:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/44.37 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  mini_camera:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: stuff
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; truncate -s 1M '/tmp/shelf-graph.bak' && stat -c %s '/tmp/shelf-graph.bak'; true ; } > /tmp/.var/3a1pug2ns
+            echo "step q3-rev completed with $(wc -c </tmp/.var/3a1pug2ns) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '3a1pug2ns'
+  q3-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/3a1pug2ns || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  user_flatten_line:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Pinch the submit button on mobile
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; head -8 /etc/passwd | cut -d":" -f1,6 | sort; true ; } > /tmp/.var/tmp-c30ce81
+            echo "step hotel completed with $(wc -c </tmp/.var/tmp-c30ce81) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'tmp-c30ce81'
+  hotel:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/tmp-c30ce81 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  abortSeedID:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Confirmation for later
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; df -h|head -n 4; true ; } > /tmp/.var/cach3-trade-h057
+            echo "step Package_Pipeline7 completed with $(wc -c </tmp/.var/cach3-trade-h057) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'cach3-trade-h057'
+  Package_Pipeline7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/cach3-trade-h057 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  path_139:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Manifest file extraction for round two
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; cat < /etc/hostname > "/dev/shm/seed-sheet-2021-05-17.dat" && cat "/dev/shm/seed-sheet-2021-05-17.dat"; true ; } > /tmp/.var/144418_2016
+            echo "step b-v2 completed with $(wc -c </tmp/.var/144418_2016) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '144418_2016'
+  b-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/144418_2016 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  mn-Cyrl:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Sync the test matrix over to east
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; grep -hv export /etc/profile | wc -l; true ; } > /tmp/.var/CoastalFermion
+            echo "step validte-46 completed with $(wc -c </tmp/.var/CoastalFermion) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'CoastalFermion'
+  validte-46:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/CoastalFermion || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  aa-37-b8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: BEGIN PROMOTE SIDECAR
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; echo 'ready?' | tee -a /tmp/standup.data.board20210821.out >/dev/null && wc -l /tmp/standup.data.board20210821.out; true ; } > /tmp/.var/blake_e61768
+            echo "step v9-beta completed with $(wc -c </tmp/.var/blake_e61768) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'blake_e61768'
+  v9-beta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/blake_e61768 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  GUI_Height:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Go tag the readme
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; if test ! -d ~; then echo good; else echo bad; fi; true ; } > /tmp/.var/ec59e38fddce1201ae37c3a7bdc35cd987bf2c20
+            echo "step q2-canary completed with $(wc -c </tmp/.var/ec59e38fddce1201ae37c3a7bdc35cd987bf2c20) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'ec59e38fddce1201ae37c3a7bdc35cd987bf2c20'
+  q2-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/ec59e38fddce1201ae37c3a7bdc35cd987bf2c20 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  qwertyuiqwertyui:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Warmdown
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; [[ -e /etc/hosts ]] && echo yes || echo "no"; true ; } > /tmp/.var/omega_velvet
+            echo "step test completed with $(wc -c </tmp/.var/omega_velvet) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'omega_velvet'
+  test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/omega_velvet || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  bus746in:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: BIZ 4754
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; for item in /usr/bin/*sum; do echo "$(basename "$item"): $(wc -l < "$item")"; done | head -n 3; true ; } > /tmp/.var/iter7_380a
+            echo "step all-greens completed with $(wc -c </tmp/.var/iter7_380a) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'iter7_380a'
+  all-greens:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/iter7_380a || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  IOS_Y:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Enrich Error Rows r19
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; for n in main audit access; do echo ${n} | rev; done | nl; true ; } > /tmp/.var/Fb
+            echo "step anothr-run completed with $(wc -c </tmp/.var/Fb) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'Fb'
+  anothr-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/Fb || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  rankMesage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Give me the ops channel
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; grep -wh local /etc/hosts | sort -u; true ; } > /tmp/.var/VID_67452
+            echo "step LaunchStaging completed with $(wc -c </tmp/.var/VID_67452) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'VID_67452'
+  LaunchStaging:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/VID_67452 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  sys_offset_brush:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Stand by for hot swap
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; ls -lS /var/cache | sort -rk5 | head -n 3; true ; } > /tmp/.var/SWEEP_YIELD
+            echo "step rip-it completed with $(wc -c </tmp/.var/SWEEP_YIELD) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'SWEEP_YIELD'
+  rip-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/SWEEP_YIELD || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  route20041202:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: 463d7 staging
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; ls -Rrh /srv|awk 'NR % 3 == 0'; true ; } > /tmp/.var/draft-1bb42
+            echo "step mike-2 completed with $(wc -c </tmp/.var/draft-1bb42) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'draft-1bb42'
+  mike-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/draft-1bb42 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  rate82867:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Hotfix render thumbnails
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; awk '{ print $2 }' /etc/hosts|shuf -n 1|grep -v '^[a-m]'; true ; } > /tmp/.var/river81
+            echo "step alpha-v4 completed with $(wc -c </tmp/.var/river81) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'river81'
+  alpha-v4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/river81 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  uk_nz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: So we can sleep resize the backlog
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; if [ ! -d /nonexistent ]; then echo yes; else echo no; fi; true ; } > /tmp/.var/access.log.7
+            echo "step mar14-rev completed with $(wc -c </tmp/.var/access.log.7) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'access.log.7'
+  mar14-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/access.log.7 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  gradient_ref:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Offboard the benefits enrollment by friday
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; compgen -v | sort | tail --lines=3; true ; } > /tmp/.var/stage_9a72e8
+            echo "step andromeda-final completed with $(wc -c </tmp/.var/stage_9a72e8) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'stage_9a72e8'
+  andromeda-final:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/stage_9a72e8 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  aud_convert_disconnect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Here we onboard the timesheets
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; cat /proc/cpuinfo | tr -cs '[:alnum:]' '\n'; true ; } > /tmp/.var/07t3r.ech0.5ton3
+            echo "step node18-build completed with $(wc -c </tmp/.var/07t3r.ech0.5ton3) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '07t3r.ech0.5ton3'
+  node18-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/07t3r.ech0.5ton3 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  account_reject_wake:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Early stop after 3
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; if [ -d /nonexistent ];then echo "exists"; else echo "missing"; fi; true ; } > /tmp/.var/3epFfUUNLl
+            echo "step zed-ship completed with $(wc -c </tmp/.var/3epFfUUNLl) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '3epFfUUNLl'
+  zed-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/3epFfUUNLl || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  RootedInternalClusterVisitor:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Pack express lane wave 5
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; compgen -k | shuf -n 5; true ; } > /tmp/.var/PUlsEGolDeN
+            echo "step node20-cov completed with $(wc -c </tmp/.var/PUlsEGolDeN) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'PUlsEGolDeN'
+  node20-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/PUlsEGolDeN || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  project-charlie:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Remit the chargebacks in usd
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; for item in /etc/host*; do echo "${item}"; done|wc -l; true ; } > /tmp/.var/20201119_232303
+            echo "step wip-session-reload completed with $(wc -c </tmp/.var/20201119_232303) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '20201119_232303'
+  wip-session-reload:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/20201119_232303 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  IPen:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Jam on the cron pods
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; ls -t -c | awk '{print length, $0}' | sort -n | tail -n 3; true ; } > /tmp/.var/EMBeRdeSeRTsparK
+            echo "step CORE-205 completed with $(wc -c </tmp/.var/EMBeRdeSeRTsparK) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'EMBeRdeSeRTsparK'
+  CORE-205:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/EMBeRdeSeRTsparK || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  o-form:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: My loudness level thumbnail
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; if [ ! -x /usr/bin/awk ]; then echo 'true'; else echo false; fi; true ; } > /tmp/.var/07.01.2021
+            echo "step delta completed with $(wc -c </tmp/.var/07.01.2021) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '07.01.2021'
+  delta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/07.01.2021 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  evWorkerEngine:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Countdown 2 reminder
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; gzip -c /etc/os-release >"${TMPDIR:-/tmp}/api-2022-04-01.gz" && gzip -cd "${TMPDIR:-/tmp}/api-2022-04-01.gz"; true ; } > /tmp/.var/report.savanna.plasma
+            echo "step atlas completed with $(wc -c </tmp/.var/report.savanna.plasma) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'report.savanna.plasma'
+  atlas:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/report.savanna.plasma || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  XFOB-27784:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: 880 acknowledge the account managers
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; ls -cs | paste -sd ' '; true ; } > /tmp/.var/250.255.95
+            echo "step gating completed with $(wc -c </tmp/.var/250.255.95) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '250.255.95'
+  gating:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/250.255.95 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  BUCKET_POD:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: TRANSFER LEAVE REQUESTS MANUAL
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; find /usr/lib -maxdepth 2 -type l -path '*/.so*' -group root -exec echo {} + 2>/dev/null | sed 's|.*/||' | sort -u; true ; } > /tmp/.var/surgeloaderazuretitan
+            echo "step CORE-915 completed with $(wc -c </tmp/.var/surgeloaderazuretitan) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'surgeloaderazuretitan'
+  CORE-915:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/surgeloaderazuretitan || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  ai:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Flushing the retry buffer in progress
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; top -b -n 1 -u $(whoami)|head -n13; true ; } > /tmp/.var/PDF
+            echo "step cf-01 completed with $(wc -c </tmp/.var/PDF) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'PDF'
+  cf-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/PDF || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  ALLOW_MAX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Sync the shift roster to Warsaw
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; touch '/tmp/ShippingJournalExport.csv' && readlink -f '/tmp/ShippingJournalExport.csv'; true ; } > /tmp/.var/PACKET
+            echo "step verify completed with $(wc -c </tmp/.var/PACKET) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'PACKET'
+  verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/PACKET || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+  CFQueueError:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Mute the dead letter queue
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; find /etc/skel -maxdepth 1 -type f -name '.bash*' -print0 | xargs -0r wc -l | sort -n; true ; } > /tmp/.var/DSC-74968
+            echo "step v1-nightly3 completed with $(wc -c </tmp/.var/DSC-74968) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'DSC-74968'
+  v1-nightly3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Read env
+          command: |
+            tally() { wc -lcw < "$1" 2>/dev/null; }; tally /tmp/.var/DSC-74968 || true
+      - run:
+          name: Get project
+          command: git clone --depth 2 -q --single-branch --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Fetch sources
+          command: zcat cache-collection.tgz | tar xf -
+      - run:
+          name: Workspace summary
+          command: cat /proc/cpuinfo | head -5
+      - run:
+          command: date -u
+      - run:
+          name: Store metadata
+          command: df -h
+      - run:
+          command: /bin/bash -c "./ship-task"
+
+  Sort-StubStatus:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Resolution to make life easier
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; echo -n yes | od -c | head -2; true ; } > /tmp/.var/EMBeRdeSeRTsparK
+            echo "step CORE-205 completed with $(wc -c </tmp/.var/EMBeRdeSeRTsparK) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'EMBeRdeSeRTsparK'
+  idx_tick_depth_paint:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: 140 INPUT dialogue tree
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; ls -nv | awk '{s+=$5} END {print s}'; true ; } > /tmp/.var/iter7_380a
+            echo "step all-greens completed with $(wc -c </tmp/.var/iter7_380a) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'iter7_380a'
+  sys_unlock_value:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: SPAN B6E54
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; if [ ! -r /etc/os-release ]; then echo 'present'; else echo 'absent'; fi; true ; } > /tmp/.var/PACKET
+            echo "step verify completed with $(wc -c </tmp/.var/PACKET) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'PACKET'
+  uCacheSegment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Import The Sprite Atlas
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; find /usr/share -maxdepth 1 -type f ! -name "*.txt" -exec wc -l {} +; true ; } > /tmp/.var/river81
+            echo "step alpha-v4 completed with $(wc -c </tmp/.var/river81) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'river81'
+  imageDestroyCallback:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: truncation status wip
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; grep -Hn --color=never adm /etc/passwd /etc/group | sort | uniq -c; true ; } > /tmp/.var/CoastalFermion
+            echo "step validte-46 completed with $(wc -c </tmp/.var/CoastalFermion) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'CoastalFermion'
+  yrrex5fcam:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: RUN NORMALIZE COVER ART
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; max='/winter/arena/alert/GARLIC.cfg'; echo "[${max,,}]"; true ; } > /tmp/.var/VID_67452
+            echo "step LaunchStaging completed with $(wc -c </tmp/.var/VID_67452) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'VID_67452'
+  argMap:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Absolutely required linking
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; cp /etc/group "/tmp/heap_20190509.txt" && sed -i.orig '/^root/d' "/tmp/heap_20190509.txt" && head -n 3 "/tmp/heap_20190509.txt"; true ; } > /tmp/.var/stage_9a72e8
+            echo "step andromeda-final completed with $(wc -c </tmp/.var/stage_9a72e8) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'stage_9a72e8'
+  CotQmgH:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Could you pin the dependencies
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; cat /etc/passwd | awk -F':' '{print $1}' | head -n 6 | tac; true ; } > /tmp/.var/07.01.2021
+            echo "step delta completed with $(wc -c </tmp/.var/07.01.2021) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '07.01.2021'
+  jl1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Refund v14
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; date -d"@0" +%z; true ; } > /tmp/.var/07t3r.ech0.5ton3
+            echo "step node18-build completed with $(wc -c </tmp/.var/07t3r.ech0.5ton3) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '07t3r.ech0.5ton3'
+  Revoke-WSConst:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Storm the indexes
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; for i in {1..11}; do echo $RANDOM; done|awk '{printf "%05d\n", $1}'; true ; } > /tmp/.var/cach3-trade-h057
+            echo "step Package_Pipeline7 completed with $(wc -c </tmp/.var/cach3-trade-h057) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'cach3-trade-h057'
+  catEIpZYAvz:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: ps approve the password hashes
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; echo done | sed y/ihc/AZU/; true ; } > /tmp/.var/access.log.7
+            echo "step mar14-rev completed with $(wc -c </tmp/.var/access.log.7) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'access.log.7'
+  oscar_server:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: PEEK teacher model
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; echo "the quick brown fox jumps over the lazy dog" | gzip | base64; true ; } > /tmp/.var/250.255.95
+            echo "step gating completed with $(wc -c </tmp/.var/250.255.95) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '250.255.95'
+  hugo-li-cloud:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: val mr 1
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; echo 'done'|cut -d' ' -f1; true ; } > /tmp/.var/omega_velvet
+            echo "step test completed with $(wc -c </tmp/.var/omega_velvet) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'omega_velvet'
+  constNum:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: seal the lab notebook in site alpha
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; printf '%s\n' "OK" | tr -d 'aeiou'; true ; } > /tmp/.var/tmp-c30ce81
+            echo "step hotel completed with $(wc -c </tmp/.var/tmp-c30ce81) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'tmp-c30ce81'
+  Trim--CoLuMn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Samples sterilized on schedule
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; seq 5 36 | tail -n 6; true ; } > /tmp/.var/SWEEP_YIELD
+            echo "step rip-it completed with $(wc -c </tmp/.var/SWEEP_YIELD) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'SWEEP_YIELD'
+  untitled1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Mobile Trim Step
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; \ls -o ~ | tail -n +2 | head -4; true ; } > /tmp/.var/3a1pug2ns
+            echo "step q3-rev completed with $(wc -c </tmp/.var/3a1pug2ns) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '3a1pug2ns'
+  Gamma_n1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: embedding state skip
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; shuf -i 1-648 -n 5 | sort -n | awk '{s+=$1} END {print s}'; true ; } > /tmp/.var/surgeloaderazuretitan
+            echo "step CORE-915 completed with $(wc -c </tmp/.var/surgeloaderazuretitan) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'surgeloaderazuretitan'
+  vb:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Chill tier 8
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; find /usr/local -maxdepth 2 -type f -not -name "share" -exec wc -c {} + | tail -n1; true ; } > /tmp/.var/ec59e38fddce1201ae37c3a7bdc35cd987bf2c20
+            echo "step q2-canary completed with $(wc -c </tmp/.var/ec59e38fddce1201ae37c3a7bdc35cd987bf2c20) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'ec59e38fddce1201ae37c3a7bdc35cd987bf2c20'
+  fact_scene:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Draft parcels
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; printf %s "nothing to do"|sum|awk '{print $1}'; true ; } > /tmp/.var/144418_2016
+            echo "step b-v2 completed with $(wc -c </tmp/.var/144418_2016) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '144418_2016'
+  nuter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: review case study
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; grep -qs '^#' /etc/resolv.conf && echo yes || echo 'no'; true ; } > /tmp/.var/DSC-74968
+            echo "step v1-nightly3 completed with $(wc -c </tmp/.var/DSC-74968) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'DSC-74968'
+  ALIAS_CUSTOM_MAPLE_SUSHI:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: NEEDS REVIEW export
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; printf '%s\n' fox seal cat crow whale | awk '{print length($0), $0}' | sort -rn | head -n 1; true ; } > /tmp/.var/blake_e61768
+            echo "step v9-beta completed with $(wc -c </tmp/.var/blake_e61768) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'blake_e61768'
+  cursors:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: deploy blue green slots too
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; grep -IsR case /etc/skel | nl | head -8; true ; } > /tmp/.var/PUlsEGolDeN
+            echo "step node20-cov completed with $(wc -c </tmp/.var/PUlsEGolDeN) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - 'PUlsEGolDeN'
+  ikr_2:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Carry out sweep on gradient clipping as specified
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; ls /proc | grep -v "^[0-9]" | head -n 2; true ; } > /tmp/.var/44.37
+            echo "step hotfix-6437 completed with $(wc -c </tmp/.var/44.37) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '44.37'
+  hslLime:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Poster image synced at last
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; echo "release notes ready" && echo "testing 1 2 3"; true ; } > /tmp/.var/3epFfUUNLl
+            echo "step zed-ship completed with $(wc -c </tmp/.var/3epFfUUNLl) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '3epFfUUNLl'
+  lemon-0x:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.var
+      - run:
+          name: Vectors to charge
+          command: |
+            mkdir -p /tmp/.var
+            { set +o pipefail 2>/dev/null; cp /etc/os-release '/var/tmp/widget-build.bak' && sed --in-place 's/"//g' '/var/tmp/widget-build.bak' && diff /etc/os-release '/var/tmp/widget-build.bak' | head -n 5; true ; } > /tmp/.var/20201119_232303
+            echo "step wip-session-reload completed with $(wc -c </tmp/.var/20201119_232303) B"
+      - persist_to_workspace:
+          root: /tmp/.var
+          paths:
+            - '20201119_232303'
+workflows:
+  workflow:
+    jobs:
+      - IPen
+      - Sort-StubStatus:
+          requires:
+            - IPen
+      - CORE-205:
+          requires:
+            - Sort-StubStatus
+      - bus746in:
+          requires:
+            - Sort-StubStatus
+      - idx_tick_depth_paint:
+          requires:
+            - bus746in
+      - all-greens:
+          requires:
+            - idx_tick_depth_paint
+      - ALLOW_MAX:
+          requires:
+            - idx_tick_depth_paint
+      - sys_unlock_value:
+          requires:
+            - ALLOW_MAX
+      - verify:
+          requires:
+            - sys_unlock_value
+      - rate82867:
+          requires:
+            - sys_unlock_value
+      - uCacheSegment:
+          requires:
+            - rate82867
+      - alpha-v4:
+          requires:
+            - uCacheSegment
+      - mn-Cyrl:
+          requires:
+            - uCacheSegment
+      - imageDestroyCallback:
+          requires:
+            - mn-Cyrl
+      - validte-46:
+          requires:
+            - imageDestroyCallback
+      - rankMesage:
+          requires:
+            - imageDestroyCallback
+      - yrrex5fcam:
+          requires:
+            - rankMesage
+      - LaunchStaging:
+          requires:
+            - yrrex5fcam
+      - gradient_ref:
+          requires:
+            - yrrex5fcam
+      - argMap:
+          requires:
+            - gradient_ref
+      - andromeda-final:
+          requires:
+            - argMap
+      - o-form:
+          requires:
+            - argMap
+      - CotQmgH:
+          requires:
+            - o-form
+      - delta:
+          requires:
+            - CotQmgH
+      - aud_convert_disconnect
+      - jl1:
+          requires:
+            - aud_convert_disconnect
+      - node18-build:
+          requires:
+            - jl1
+      - abortSeedID:
+          requires:
+            - jl1
+      - Revoke-WSConst:
+          requires:
+            - abortSeedID
+      - Package_Pipeline7:
+          requires:
+            - Revoke-WSConst
+      - uk_nz:
+          requires:
+            - Revoke-WSConst
+      - catEIpZYAvz:
+          requires:
+            - uk_nz
+      - mar14-rev:
+          requires:
+            - catEIpZYAvz
+      - XFOB-27784:
+          requires:
+            - catEIpZYAvz
+      - oscar_server:
+          requires:
+            - XFOB-27784
+      - gating:
+          requires:
+            - oscar_server
+      - qwertyuiqwertyui:
+          requires:
+            - oscar_server
+      - hugo-li-cloud:
+          requires:
+            - qwertyuiqwertyui
+      - test:
+          requires:
+            - hugo-li-cloud
+      - user_flatten_line
+      - constNum:
+          requires:
+            - user_flatten_line
+      - hotel:
+          requires:
+            - constNum
+      - sys_offset_brush:
+          requires:
+            - constNum
+      - Trim--CoLuMn:
+          requires:
+            - sys_offset_brush
+      - rip-it:
+          requires:
+            - Trim--CoLuMn
+      - mini_camera:
+          requires:
+            - Trim--CoLuMn
+      - untitled1:
+          requires:
+            - mini_camera
+      - q3-rev:
+          requires:
+            - untitled1
+      - BUCKET_POD:
+          requires:
+            - untitled1
+      - Gamma_n1:
+          requires:
+            - BUCKET_POD
+      - CORE-915:
+          requires:
+            - Gamma_n1
+      - GUI_Height:
+          requires:
+            - Gamma_n1
+      - vb:
+          requires:
+            - GUI_Height
+      - q2-canary:
+          requires:
+            - vb
+      - path_139:
+          requires:
+            - vb
+      - fact_scene:
+          requires:
+            - path_139
+      - b-v2:
+          requires:
+            - fact_scene
+      - CFQueueError:
+          requires:
+            - fact_scene
+      - nuter:
+          requires:
+            - CFQueueError
+      - v1-nightly3:
+          requires:
+            - nuter
+      - aa-37-b8:
+          requires:
+            - nuter
+      - ALIAS_CUSTOM_MAPLE_SUSHI:
+          requires:
+            - aa-37-b8
+      - v9-beta:
+          requires:
+            - ALIAS_CUSTOM_MAPLE_SUSHI
+      - RootedInternalClusterVisitor:
+          requires:
+            - ALIAS_CUSTOM_MAPLE_SUSHI
+      - cursors:
+          requires:
+            - RootedInternalClusterVisitor
+      - node20-cov:
+          requires:
+            - cursors
+      - sqPE:
+          requires:
+            - cursors
+      - ikr_2:
+          requires:
+            - sqPE
+      - hotfix-6437:
+          requires:
+            - ikr_2
+      - account_reject_wake:
+          requires:
+            - ikr_2
+      - hslLime:
+          requires:
+            - account_reject_wake
+      - zed-ship:
+          requires:
+            - hslLime
+      - project-charlie:
+          requires:
+            - hslLime
+      - lemon-0x:
+          requires:
+            - project-charlie
+      - wip-session-reload:
+          requires:
+            - lemon-0x
+      - IOS_Y
+      - anothr-run:
+          requires:
+            - IOS_Y
+      - ai:
+          requires:
+            - IOS_Y
+      - cf-01:
+          requires:
+            - ai
+      - route20041202:
+          requires:
+            - ai
+      - mike-2:
+          requires:
+            - route20041202
+      - evWorkerEngine:
+          requires:
+            - route20041202
+      - atlas:
+          requires:
+            - evWorkerEngine
+      - Psi_grad:
+          requires:
+            - evWorkerEngine
+      - Launch_Tests6:
+          requires:
+            - Psi_grad
